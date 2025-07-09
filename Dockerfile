@@ -6,6 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Create a workspace
 WORKDIR /ros2_humble_ws/src
 
+COPY ./ros2_humble_ws/setup /ros2_humble_ws/setup
+
 # install ros package
 RUN apt-get update && apt-get install -y \
       ros-${ROS_DISTRO}-demo-nodes-cpp \
@@ -43,4 +45,7 @@ RUN echo "export GZ_SIM_RESOURCE_PATH=${GZ_SIM_RESOURCE_PATH}:/ros2_humble_ws/sr
 # An alias to source the bashrc file
 RUN  echo "alias sb='source ~/.bashrc'" >> ~/.bashrc
 
-CMD [ "/ros2_humble_ws/src/init.sh"]
+RUN apt-get update && apt-get install -y dos2unix && \
+    dos2unix /ros2_humble_ws/setup/init.sh
+
+CMD [ "/ros2_humble_ws/setup/init.sh"]

@@ -1,5 +1,3 @@
-#!/bin/bash
-# This script is run when the container is started!
 echo "ROS2 Humble and Gazebo Harmonic Docker running!"
 echo "
     ____  ____  ________      ____             __            
@@ -9,4 +7,4 @@ echo "
 /_/ |_|\____//____/____/  /_____/\____/\___/_/|_|\___/_/     
 "
 
-sleep infinity
+while true; do sleep 86400; done
